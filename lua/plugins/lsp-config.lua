@@ -37,12 +37,36 @@ return {
         capabilities = capabilities,
       })
 
-      vim.lsp.config("jdtls", {
-        cmd = { "jdtls" }, -- kiểm tra lại tên binary thật, xem ghi chú bên dưới
+      -- Angular
+      vim.lsp.config("angularls", {
+        cmd = {
+          "ngserver",
+          "--stdio",
+        },
+
         capabilities = capabilities,
+
+        filetypes = {
+          "html",
+          "typescript",
+        },
+
+        root_markers = {
+          "angular.json",
+          "project.json",
+          "nx.json",
+        },
       })
 
-      vim.lsp.enable({ "lua_ls", "jdtls", "ts_ls", "html", "cssls" })
+      vim.lsp.enable({
+        "lua_ls",
+        "jdtls",
+        "ts_ls",
+        "html",
+        "cssls",
+        "angularls",
+      })
+
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover)
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
